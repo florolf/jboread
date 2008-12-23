@@ -1,0 +1,42 @@
+Disclaimer:
+This is not done.
+It doesn't do lujvo yet.
+
+It's ugly.
+It *will* break (and it will do so in the exact moment you read the most
+interesting part of whatever you're reading).
+
+And please don't tell me how much I suck, I already know.
+--------------------------------------------------------------------------------
+
+If you don't want to use the included libmorf.a, you'll have to build your own,
+see morf/README.
+You might want to customize the colors jboread uses for the different word-types
+in ui.c.
+
+USAGE
+-----
+jboread [-t] [-x tfile] textfile
+
+-t		Transcribe (see section "Transcripts") to ./transcript
+-x tfile	Transcribe to tfile
+
+Keys:
+-----
+ - q: Exit
+ - c: Toggle colors
+ - space: Look up word
+ - Page Down/Up: Go a page up or down
+ - Up/Down: Next/Previous sentence
+ - Left/Right: Next/Previous word
+ - Home: Beginning of sentence
+ - End: End of sentence
+
+Transcripts
+-----------
+A transcript contains the list of all the words you've looked up. The idea is
+that you know what words to add to your flashcard program (you use one, don't
+you?).
+Keep in mind that this is a very dumb feature, if you look up the same word
+twice, it will be in the transcript twice, so you might want to use "sort -u"
+and friends.

@@ -1,0 +1,6 @@
+libmorf.a is generated from jbofi'e source code, you'll need to add the lines from
+the Makefile in the current directory to the Makefile of jbofi'e and run
+
+ make libmorf
+
+and copy libmorf.a to morf/.
