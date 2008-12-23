@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <unistd.h>
 
 #include <curses.h>
 
@@ -12,6 +13,7 @@
 #include "parse.h"
 #include "info.h"
 #include "table.h"
+#include "transcription.h"
 
 #include "db/gismu.h"
 #include "db/cmavo.h"

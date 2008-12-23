@@ -231,9 +231,11 @@ void display_cmavo() {
 void lookup_valsi() {
 	switch(curw->type) {
 		case V_GISMU:
+			check_transcribe(curw);
 			display_gismu();
 			break;
 		case V_CMAVO:
+			check_transcribe(curw);
 			display_cmavo();
 			break;
 		default:
