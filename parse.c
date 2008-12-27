@@ -2,13 +2,24 @@
 
 int allow_cultural_rafsi=1;
 
-int vlatai(struct valsi **v) {
+MorfType vlatai(char *v) {
+	char *start[256], **pstart;
+	struct morf_xtra xtra;
+	MorfType type;
+
+	pstart=start;
+	type = morf_scan(v, &pstart, &xtra);
+	return type;
+}
+
+int do_vlatai(struct valsi **v) {
 	char *start[256], **pstart;
 	struct morf_xtra xtra;
 	MorfType type;
 
 	pstart=start;
 	type = morf_scan((*v)->v, &pstart, &xtra);
+
 	if(type == MT_BOGUS || type == MT_BAD_UPPERCASE) (*v)->type = V_BROKEN;
 	if(type == MT_GISMU) (*v)->type = V_GISMU;
 	if(type == MT_LUJVO) (*v)->type = V_LUJVO;
@@ -69,7 +80,7 @@ int parse_text(FILE *in, struct valsi **text) {
 				buf[i]=0;
 				cur->v=strdup(buf);
 
-				if(vlatai(&cur))
+				if(do_vlatai(&cur))
 					return 1;
 				i=0;
 			}

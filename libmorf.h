@@ -62,6 +62,7 @@ struct morf_xtra {
 
 /* Prototypes for fns */
 extern MorfType morf_scan(char *s, char ***buf_end, struct morf_xtra *);
+char *canon_lujvo(char*);
 
 #endif /* MORF_H */
 

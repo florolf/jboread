@@ -3,7 +3,8 @@ OBJS=info.o\
      parse.o\
      table.o\
      transcription.o\
-     ui.o
+     ui.o\
+     choice.o
 
 all: $(OBJS)
 	gcc -o jboread $(OBJS) morf/libmorf.a -lncurses

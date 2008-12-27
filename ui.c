@@ -142,7 +142,7 @@ void jumpto(struct valsi *v) {
 	}
 }
 
-void show_error(char *msg) {
+void show_message(char *msg) {
 	int len;
 	WINDOW *errw;
 
@@ -168,7 +168,7 @@ void display_gismu() {
 
 	g=get_gismu(curw->v);
 	if(!g) {
-		show_error("This gismu does not exist");
+		show_message("This gismu does not exist");
 		return;
 	}
 
@@ -208,7 +208,7 @@ void display_cmavo() {
 
 	c=get_cmavo(curw->v);
 	if(!c) {
-		show_error("This cmavo is not part of the DB");
+		show_message("This cmavo is not part of the DB");
 		return;
 	}
 
@@ -228,6 +228,95 @@ void display_cmavo() {
 	free(tab);
 }
 
+void display_lujvo_decompose() {
+	MorfType type;
+	char *exp, *old, *p, **tab;
+	int cnt, i;
+
+	exp=strdup(canon_lujvo(curw->v));
+
+	cnt=1;
+	for(p=exp; *p; p++)
+		if(*p == '+') cnt++;
+		else if(*p == '?') {
+			show_message("This lujvo is broken");
+			return;
+		}
+
+
+	tab=malloc(sizeof(char*) * (cnt+1) * 2);
+
+	i=0;
+	for(p=old=exp; *p; p++)
+		if(*p == '+') {
+			*p = 0;
+			tab[i] = strdup(old);
+
+			type = vlatai(tab[i]);
+			if(type == MT_CMAVOS) {
+				struct cmavo_entry *c;
+				
+				c=get_cmavo(tab[i]);
+				tab[i+1]=c->gloss;
+			}
+			else if(type == MT_GISMU) {
+				struct gismu_entry *g;
+				
+				g=get_gismu(tab[i]);
+				tab[i+1]=g->gloss;
+			}
+
+
+			old=p+1;
+			p++;
+			i += 2;
+		}
+
+
+	tab[i] = strdup(old);
+
+	type = vlatai(tab[i]);
+	if(type == MT_CMAVOS) {
+		struct cmavo_entry *c;
+		
+		c=get_cmavo(tab[i]);
+		tab[i+1]=c->descr;
+	}
+	else if(type == MT_GISMU) {
+		struct gismu_entry *g;
+		
+		g=get_gismu(tab[i]);
+		tab[i+1]=g->def;
+	}
+
+
+	tab[i+2]=tab[i+3]=NULL;
+	display_tabular(tab);
+
+	for(i=0; i < 2*cnt; i += 2)
+		free(tab[i]);
+	free(tab);
+}
+
+void display_lujvo() {
+	struct box_choice box[] = {{'j', "jbovlaste"},{'d', "Decompose lujvo"},{0,0}};
+	int c;
+
+	c=choice_box(box);
+	
+	switch(c) {
+		case 'd':
+			display_lujvo_decompose();
+			break;
+		case 'j':
+			show_message("Blubb");
+			break;
+	}
+
+	render_text(page);
+	move(curw->y, curw->x);
+}
+
 void lookup_valsi() {
 	switch(curw->type) {
 		case V_GISMU:
@@ -238,8 +327,15 @@ void lookup_valsi() {
 			check_transcribe(curw);
 			display_cmavo();
 			break;
+		case V_LUJVO:
+			check_transcribe(curw);
+			display_lujvo();
+			break;
+		case V_CMENE: //looking up cmene doesn't really make sense
+		case V_BROKEN:
+			break;
 		default:
-			show_error("This word type is not implemented yet");
+			show_message("This word type is not implemented yet");
 			break;
 	}
 }

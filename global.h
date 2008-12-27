@@ -14,6 +14,7 @@
 #include "info.h"
 #include "table.h"
 #include "transcription.h"
+#include "choice.h"
 
 #include "db/gismu.h"
 #include "db/cmavo.h"
