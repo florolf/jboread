@@ -298,6 +298,25 @@ void display_lujvo_decompose() {
 	free(tab);
 }
 
+void display_lujvo_jbovlaste() {
+	struct lujvo_entry *l;
+	char **tab;
+
+	l=get_lujvo(curw->v);
+	if(!l) {
+		show_message("jbovlaste doesn't know of this lujvo");
+		return;
+	}
+
+	tab=malloc(sizeof(char*) * 4);
+	tab[0]=l->lujvo;
+	tab[1]=l->def;
+	tab[2]=tab[3]=NULL;
+
+	display_tabular(tab);
+	free(tab);
+}
+
 void display_lujvo() {
 	struct box_choice box[] = {{'j', "jbovlaste"},{'d', "Decompose lujvo"},{0,0}};
 	int c;
@@ -309,7 +328,7 @@ void display_lujvo() {
 			display_lujvo_decompose();
 			break;
 		case 'j':
-			show_message("Blubb");
+			display_lujvo_jbovlaste();
 			break;
 	}
 

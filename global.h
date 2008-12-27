@@ -18,6 +18,7 @@
 
 #include "db/gismu.h"
 #include "db/cmavo.h"
+#include "db/lujvo.h"
 
 #define MIN(x,y) ((x) < (y) ? (x) : (y))
 #define MAX(x,y) ((x) > (y) ? (x) : (y))

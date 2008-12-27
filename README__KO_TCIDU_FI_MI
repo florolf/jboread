@@ -1,7 +1,5 @@
 Disclaimer:
 This is not done.
-It doesn't do lujvo yet.
-
 It's ugly.
 It *will* break (and it will do so in the exact moment you read the most
 interesting part of whatever you're reading).
@@ -40,3 +38,11 @@ you?).
 Keep in mind that this is a very dumb feature, if you look up the same word
 twice, it will be in the transcript twice, so you might want to use "sort -u"
 and friends.
+
+Lujvo
+-----
+There are currently two ways to deal with lujvo:
+ - Pressing "d" (after space) will decompose the lujvo into its components
+ - Pressing "j" will try to find the lujvo in a static dump of jbovlaste
+   Warning: Currently, only exact matches of the canonical lujvo form will
+   be found.

@@ -2,6 +2,7 @@
 
 #include "db/gismu_db.h"
 #include "db/cmavo_db.h"
+#include "db/lujvo_db.h"
 
 struct gismu_entry *get_gismu(char *v) {
 	int i;
@@ -19,6 +20,18 @@ struct cmavo_entry *get_cmavo(char *v) {
 	for(i=0; cmavo_db[i].cmavo; i++)
 		if(!strcmp(v, cmavo_db[i].cmavo))
 			return &cmavo_db[i];
+
+	return NULL;
+}
+
+struct lujvo_entry *get_lujvo(char *v) {
+	int i;
+	
+	//FIXME: This only works if v is in canonical form
+
+	for(i=0; lujvo_db[i].lujvo; i++)
+		if(!strcmp(v, lujvo_db[i].lujvo))
+			return &lujvo_db[i];
 
 	return NULL;
 }
