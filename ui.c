@@ -84,9 +84,11 @@ void scan_pagebreaks(struct valsi *text) {
 		fix_pauses(cur->v, fixed);
 
 		len=strlen(fixed);
+		if(!strcmp(cur->v, "ni'o")) yuse++;
+
 		if(xuse+len > width || (cur->type == V_CMAVO && !check_paragraph(cur->v))) {
 			yuse++;
-			if(yuse == height) {
+			if(yuse >= height) {
 				breaks[i]=cur;
 				i++;
 				if(i == bsize) {
@@ -97,7 +99,6 @@ void scan_pagebreaks(struct valsi *text) {
 			}
 			xuse=0;
 		}
-		if(!strcmp(cur->v, "ni'o")) yuse++;
 		cur->x=xuse;
 		cur->y=yuse;
 
