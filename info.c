@@ -27,8 +27,6 @@ struct cmavo_entry *get_cmavo(char *v) {
 struct lujvo_entry *get_lujvo(char *v) {
 	int i;
 	
-	//FIXME: This only works if v is in canonical form
-
 	for(i=0; lujvo_db[i].lujvo; i++)
 		if(!strcmp(v, lujvo_db[i].lujvo))
 			return &lujvo_db[i];

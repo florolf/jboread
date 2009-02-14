@@ -301,9 +301,11 @@ void display_lujvo_decompose() {
 
 void display_lujvo_jbovlaste() {
 	struct lujvo_entry *l;
-	char **tab;
+	char **tab, *exp;
 
-	l=get_lujvo(curw->v);
+	exp=canon_lujvo(curw->v);
+
+	l=get_lujvo(exp);
 	if(!l) {
 		show_message("jbovlaste doesn't know of this lujvo");
 		return;
