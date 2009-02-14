@@ -44,5 +44,3 @@ Lujvo
 There are currently two ways to deal with lujvo:
  - Pressing "d" (after space) will decompose the lujvo into its components
  - Pressing "j" will try to find the lujvo in a static dump of jbovlaste
-   Warning: Currently, only exact matches of the canonical lujvo form will
-   be found.
